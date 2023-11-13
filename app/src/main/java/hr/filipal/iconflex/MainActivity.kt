@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -11,10 +12,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import hr.filipal.iconflex.screens.*
-import hr.filipal.iconflex.screens.SettingsScreen
-
-
-
 
 class MainActivity : ComponentActivity() {
     // Instanciranje ViewModel-a
@@ -58,16 +55,31 @@ fun AppNavigation() {
 }
 
 @Composable
-fun AppsListScreen() {
-    // Implementacija liste aplikacija s Material3 komponentama
-    Text("Ovdje će biti prikazane aplikacije")
+fun SearchBar(onSearch: (String) -> Unit) {
+    var searchText by remember { mutableStateOf("") }
+
+    TextField(
+        value = searchText,
+        onValueChange = { searchText = it },
+        label = { Text("Search") },
+        singleLine = true,
+        keyboardActions = KeyboardActions(onSearch = { onSearch(searchText) })
+    )
 }
 
 @Composable
-fun SettingsScreen() {
-    // Implementacija SettingsScreen
-    Text("Ovdje će biti prikazane postavke")
+fun AppsListScreen() {
+    var searchQuery by remember { mutableStateOf("") }
+
+    Column {
+        SearchBar(onSearch = { query -> searchQuery = query })
+        // Ovdje implementirajte logiku za prikaz filtriranih aplikacija na temelju searchQuery
+    }
 }
+
+
+
+
 // Ostale komponente i funkcije...
 
 

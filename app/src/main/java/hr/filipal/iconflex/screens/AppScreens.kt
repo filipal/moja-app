@@ -44,12 +44,7 @@ fun WidgetsScreen() {
 }
 
 @Composable
-fun SettingsScreen() {
-    Text(text = "Ovo je ekran za postavke")
-}
-
-@Composable
-fun BodyContent(paddingValues: PaddingValues, navController: NavHostController, searchQuery: String) {
+fun BodyContent(paddingValues: PaddingValues, navController: NavHostController) {
     val appsViewModel: AppsViewModel = viewModel()
     Column(modifier = Modifier.padding(paddingValues)) {
         NavHost(navController = navController, startDestination = APPS_ROUTE) {
