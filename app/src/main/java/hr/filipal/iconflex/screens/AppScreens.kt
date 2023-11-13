@@ -4,18 +4,37 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.lifecycle.viewmodel.compose.viewModel
-import hr.filipal.iconflex.viewmodels.AppsViewModel
-import androidx.compose.ui.Modifier
 import hr.filipal.iconflex.AppDestinations.APPS_ROUTE
+import hr.filipal.iconflex.viewmodels.AppsViewModel
+
+
 
 @Composable
 fun AppsScreen(appsViewModel: AppsViewModel = viewModel()) {
-    // Ovdje koristite AppsListScreen za prikaz liste aplikacija
+    var searchQuery by remember { mutableStateOf("") }
+
+    // UI za unos pretrage
+    TextField(
+        value = searchQuery,
+        onValueChange = { query ->
+            searchQuery = query
+            appsViewModel.onSearchQueryChanged(query)
+        },
+        label = { Text("Pretraga") }
+    )
+
+    // Prikaz liste aplikacija
     AppsListScreen(appsViewModel)
 }
 
