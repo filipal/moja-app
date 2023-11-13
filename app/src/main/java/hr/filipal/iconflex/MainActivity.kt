@@ -11,6 +11,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import hr.filipal.iconflex.screens.*
 import hr.filipal.iconflex.screens.SettingsScreen
+import androidx.compose.ui.Modifier
 
 
 
@@ -43,11 +44,15 @@ fun AppNavigation() {
     val navController = rememberNavController()
     Scaffold(
         topBar = { SmallTopAppBar(title = { Text("Custom Launcher") }) }
-    ) {
-        NavHost(navController = navController, startDestination = "apps") {
+    ) { innerPadding ->
+        NavHost(
+            navController = navController,
+            startDestination = "apps",
+            modifier = Modifier.padding(innerPadding) // Dodajte ovu liniju
+        ) {
             composable("apps") { AppsListScreen() }
-            composable("widgets") { WidgetsScreen() } // Ovdje dodajte WidgetsScreen
-            composable("settings") { SettingsScreen() } // Ovdje dodajte SettingsScreen
+            composable("widgets") { WidgetsScreen() }
+            composable("settings") { SettingsScreen() }
         }
     }
 }
