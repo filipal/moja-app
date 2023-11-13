@@ -3,11 +3,13 @@ import org.apache.tools.ant.util.JavaEnvUtils.VERSION_1_8
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp")
+
 }
 
 android {
-    namespace = "hr.filipal.iconflex"
-    compileSdk = 33
+    namespace = "hr.filipal.IconFlex"
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "hr.filipal.iconflex"
@@ -34,7 +36,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "19"
+        jvmTarget = "1.8"
     }
 
     buildFeatures {
@@ -71,9 +73,8 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.5")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.5")
     implementation("androidx.navigation:navigation-compose:2.7.5")
-    implementation("androidx.compose.material3:material3:1.1.2")
     implementation("androidx.compose.foundation:foundation:1.5.4")
-    implementation("androidx.navigation:navigation-runtime-ktk:2.7.5")
+    implementation("androidx.navigation:navigation-runtime-ktx:2.7.5")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

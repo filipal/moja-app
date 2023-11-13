@@ -6,12 +6,12 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import hr.filipal.iconflex.screens.*
 import hr.filipal.iconflex.screens.SettingsScreen
-import androidx.compose.ui.Modifier
 
 
 
@@ -43,7 +43,7 @@ fun CustomLauncherTheme(content: @Composable () -> Unit) {
 fun AppNavigation() {
     val navController = rememberNavController()
     Scaffold(
-        topBar = { SmallTopAppBar(title = { Text("Custom Launcher") }) }
+        topBar = { TopAppBar(title = { Text("Custom Launcher") }) }
     ) { innerPadding ->
         NavHost(
             navController = navController,
